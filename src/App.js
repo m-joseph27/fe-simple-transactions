@@ -1,6 +1,6 @@
 import React from 'react';
 import './index.css';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import BaseSidebarComponent from './components/sidebar/sidebar';
 import SalesPage from './pages/sales/sales';
 import SalesFormComponent from './pages/sales/sales-form';

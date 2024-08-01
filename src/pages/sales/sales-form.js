@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import customers from '../../pages/data';
-import BaseTableComponent from '../../components/table/table';
 import { Button } from 'antd';
+import TransactionTableComponent from '../../components/table/transaction-table';
 
 const SalesFormComponent = () => {
   const [transaksi, setTransaksi] = useState({ no: '', tanggal: '' });
@@ -17,6 +17,30 @@ const SalesFormComponent = () => {
     ongkir: 0,
     total: 0
   });
+
+  // const columns = [
+  //   {
+  //     title: 'Action',
+  //   },
+  //   {
+  //     title: 'No',
+  //   },
+  //   {
+  //     title: 'Kode Barang',
+  //   },
+  //   {
+  //     title: 'Nama Barang',
+  //   },
+  //   {
+  //     title: 'Qty',
+  //   },
+  //   {
+  //     title: 'Harga Bandrol',
+  //   },
+  //   {
+  //     title: 'Action',
+  //   }
+  // ]
 
   const handleCustomerChange = (e) => {
     const selectedCustomer = customers.find(c => c.kode === e.target.value);
@@ -94,7 +118,7 @@ const SalesFormComponent = () => {
           </div>
           <hr className="mt-6" />
           <div className="mt-10 mb-10">
-            <BaseTableComponent />
+            <TransactionTableComponent />
           </div>
         </div>
       </div>

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import BaseTableComponent from "../components/table/table";
-import { getSales } from "../services/sales";
+import BaseTableComponent from "../../components/table/table";
+import { getSales } from "../../services/sales";
 import moment from "moment";
-import CurrencyFormatter from '../utils/currency-formatter';
+import CurrencyFormatter from '../../utils/currency-formatter';
 
 const SalesPage = () => {
   const [sales, setSales] = useState([]);

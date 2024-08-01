@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import customers from '../../pages/data';
-import BaseTableComponent from '../table/table';
+import BaseTableComponent from '../../components/table/table';
 import { Button } from 'antd';
 
-const FormComponent = () => {
+const SalesFormComponent = () => {
   const [transaksi, setTransaksi] = useState({ no: '', tanggal: '' });
   const [selectedCustomer, setSelectedCustomer] = useState('');
   const [customerData, setCustomerData] = useState({ nama: '', telp: '' });
@@ -154,4 +154,4 @@ const FormComponent = () => {
   );
 };
 
-export default FormComponent;
+export default SalesFormComponent;

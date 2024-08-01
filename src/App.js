@@ -1,16 +1,17 @@
 import React from 'react';
-import { Button } from 'antd';
 import './index.css';
+import BaseTableComponent from './components/table/table';
+import BaseSidebarComponent from './components/sidebar/sidebar';
+import FormComponent from './components/form/form';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header bg-blue-500 text-white p-4">
-        <h1 className="text-4xl font-bold">Welcome to React with Ant Design and Tailwind CSS</h1>
-        <Button type="primary" className="mt-4">
-          Ant Design Button
-        </Button>
-      </header>
+    <div className="flex h-screen">
+      <BaseSidebarComponent />
+      <div className="flex-1 p-4 overflow-auto mx-auto">
+        <BaseTableComponent />
+        <FormComponent />
+      </div>
     </div>
   );
 }

@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { PlusOutlined } from '@ant-design/icons';
 import BaseTableComponent from "../../components/table/table";
 import { getSales } from "../../services/sales";
 import moment from "moment";
 import CurrencyFormatter from '../../utils/currency-formatter';
+import { Button } from "antd";
+import { useNavigate } from "react-router-dom";
 
 const SalesPage = () => {
+  const navigate = useNavigate();
   const [sales, setSales] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -26,6 +30,10 @@ const SalesPage = () => {
 
     fetchData();
   }
+
+  const handleClick = () => {
+    navigate('/add-transaction');
+  };
 
   const columns = [
     {
@@ -85,7 +93,19 @@ const SalesPage = () => {
   ];
 
   return (
-    <div>
+    <div className="container mx-auto">
+      <div className="flex mb-4 mt-8">
+        <Button
+          type="primary"
+          size="middle"
+          className="font-semibold text-xs"
+          iconPosition="start"
+          icon={<PlusOutlined />}
+          onClick={handleClick}
+        >
+          Tambah Transaksi
+        </Button>
+      </div>
       <BaseTableComponent columns={columns} data={sales} loading={loading} />
     </div>
   )

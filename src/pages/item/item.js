@@ -142,12 +142,13 @@ const ItemsPage = () => {
   ];
 
   return (
-    <div className="containter mx-auto">
+    <div className="container mx-auto">
       <div className="flex mb-4 mt-8">
         <Button
           type="primary"
           size="middle"
-          iconPosition="end"
+          iconPosition="start"
+          className="font-semibold text-xs"
           icon={<PlusOutlined />}
           onClick={() => {
             setIsModalVisible(true);

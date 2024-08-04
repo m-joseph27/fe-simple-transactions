@@ -140,8 +140,9 @@ const CustomerPage = () => {
       <div className="mb-4 mt-8">
         <Button
           type="primary"
-          iconPosition="end"
           icon={<PlusOutlined />}
+          iconPosition="start"
+          className="font-semibold text-xs"
           onClick={() => {
             setIsModalVisible(true);
             setEditingCustomer(null);

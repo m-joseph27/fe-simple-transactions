@@ -115,7 +115,7 @@ const CustomerPage = () => {
           </Button>
           <Button
             className="text-red-600 bg-red-300 text-xs font-semibold"
-            type="dashed"
+            type="default"
             size="middle"
             onClick={() => deleteCustomerAPI(value)}
           >

@@ -4,10 +4,11 @@ import CurrencyFormatter from '../../utils/currency-formatter';
 const { Column, ColumnGroup } = Table;
 
 const TransactionTableComponent = ({ data }) => (
-  <Table bordered dataSource={data} pagination={false} >
+  <Table bordered dataSource={data} pagination={false} scroll={{ x: 800 }}>
     <Column
       title="No"
       render={(text, record, index) => index + 1}
+      responsive={['xs', 'sm', 'md', 'lg']}
     />
     <Column
       title="Kode Barang"
@@ -16,6 +17,7 @@ const TransactionTableComponent = ({ data }) => (
       render={(value) => {
         return <span>{value ? value.itemCode : 'N/A'}</span>
       }}
+      responsive={['sm', 'md', 'lg']}
     />
     <Column
       title="Nama Barang"
@@ -24,11 +26,13 @@ const TransactionTableComponent = ({ data }) => (
       render={(value) => {
         return <span>{value ? value.itemName : 'N/A'}</span>
       }}
+      responsive={['sm', 'md', 'lg']}
     />
     <Column
       title="Qty"
       dataIndex="quantity"
       key="quantity"
+      responsive={['xs', 'sm', 'md', 'lg']}
     />
     <Column
       title="Harga Bandrol"
@@ -37,8 +41,9 @@ const TransactionTableComponent = ({ data }) => (
       render={(value) => {
         return CurrencyFormatter.format(value);
       }}
+      responsive={['md', 'lg']}
     />
-    <ColumnGroup title="Diskon">
+    <ColumnGroup title="Diskon" responsive={['md', 'lg']}>
       <Column
         title="%"
         dataIndex="discountPercentage"
@@ -63,6 +68,7 @@ const TransactionTableComponent = ({ data }) => (
       render={(value) => {
         return CurrencyFormatter.format(value);
       }}
+      responsive={['md', 'lg']}
     />
     <Column
       title="Total"
@@ -71,6 +77,7 @@ const TransactionTableComponent = ({ data }) => (
       render={(value) => {
         return CurrencyFormatter.format(value);
       }}
+      responsive={['md', 'lg']}
     />
     <Column
       title="Action"
@@ -81,6 +88,7 @@ const TransactionTableComponent = ({ data }) => (
           <span className="text-red-500">Hapus</span>
         </Space>
       )}
+      responsive={['xs', 'sm', 'md', 'lg']}
     />
   </Table>
 );

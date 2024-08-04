@@ -37,6 +37,7 @@ const SalesPage = () => {
     },
     {
       title: 'Nama Customer',
+      width: '120px',
       render: (value) => {
         return value.customerId && value.customerId.customerName ? value.customerId.customerName : 'N/A';
       }
@@ -44,6 +45,7 @@ const SalesPage = () => {
     {
       title: 'Jumlah Barang',
       dataIndex: 'transactions',
+      width: '100px',
       render: (value) => {
         return value.length;
       }

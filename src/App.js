@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import BaseSidebarComponent from './components/sidebar/sidebar';
 import SalesPage from './pages/sales/sales';
 import SalesFormComponent from './pages/sales/sales-form';
+import CustomerPage from './pages/customer/customer';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<SalesPage />} />
           <Route path="/add-transaction" element={<SalesFormComponent />} />
+          <Route path="/customers" element={<CustomerPage />} />
         </Routes>
       </div>
     </div>

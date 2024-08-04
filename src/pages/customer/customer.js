@@ -44,7 +44,7 @@ const CustomerPage = () => {
 
   const addCustomerAPI = async () => {
     try {
-      const payload = await customerForm.validateFields();
+      const payload = customerForm.validateFields();
       await postCustomer(payload);
       alert('Berhasil menambahkan customer');
       getCustomersFromAPI();
@@ -136,7 +136,6 @@ const CustomerPage = () => {
           onClick={() => {
             setIsModalVisible(true);
             setEditingCustomer(null);
-            customerForm.resetFields();
           }}
         >
           Tambah Pelanggan

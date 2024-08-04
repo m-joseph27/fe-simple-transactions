@@ -13,3 +13,13 @@ export const getSales = async (endpoint) => {
     throw error;
   }
 }
+
+export const postSale = async (endpoint, sale) => {
+  try {
+    const response = await baseURL.post(endpoint, sale);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error;
+  }
+}

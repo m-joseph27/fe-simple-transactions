@@ -1,46 +1,77 @@
 import React from 'react';
-import { Space, Table, Tag } from 'antd';
+import { Space, Table } from 'antd';
+import CurrencyFormatter from '../../utils/currency-formatter';
 const { Column, ColumnGroup } = Table;
-const data = [
-  {
-    key: '1',
-    firstName: 'John',
-    lastName: 'Brown',
-    age: 32,
-    address: 'New York No. 1 Lake Park',
-    tags: ['nice', 'developer'],
-  },
-  {
-    key: '2',
-    firstName: 'Jim',
-    lastName: 'Green',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-    tags: ['loser'],
-  },
-  {
-    key: '3',
-    firstName: 'Joe',
-    lastName: 'Black',
-    age: 32,
-    address: 'Sydney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
-  },
-];
 
-const TransactionTableComponent = () => (
+const TransactionTableComponent = ({ data }) => (
   <Table bordered dataSource={data} pagination={false} >
-    <Column title="No" dataIndex="age" key="age" />
-    <Column title="Kode Barang" dataIndex="age" key="age" />
-    <Column title="Nama Barang" dataIndex="age" key="age" />
-    <Column title="Qty" dataIndex="age" key="age" />
-    <Column title="Harga Bandrol" dataIndex="age" key="age" />
+    <Column
+      title="No"
+      render={(text, record, index) => index + 1}
+    />
+    <Column
+      title="Kode Barang"
+      dataIndex="itemId"
+      key="itemId"
+      render={(value) => {
+        return <span>{value.itemCode}</span>
+      }}
+    />
+    <Column
+      title="Nama Barang"
+      dataIndex="itemId"
+      key="itemId"
+      render={(value) => {
+        return <span>{value.itemName}</span>
+      }}
+    />
+    <Column
+      title="Qty"
+      dataIndex="quantity"
+      key="quantity"
+    />
+    <Column
+      title="Harga Bandrol"
+      dataIndex="price"
+      key="price"
+      render={(value) => {
+        return CurrencyFormatter.format(value);
+      }}
+    />
     <ColumnGroup title="Diskon">
-      <Column title="%" dataIndex="age" key="age" />
-      <Column title="(Rp)" dataIndex="lastName" key="lastName" />
+      <Column
+        title="%"
+        dataIndex="discountPercentage"
+        key="discountPercentage"
+        render={(value) => {
+          return value + '%'
+        }}
+      />
+      <Column
+        title="(Rp)"
+        dataIndex="discountAmount"
+        key="discountAmount"
+        render={(value) => {
+          return CurrencyFormatter.format(value);
+        }}
+      />
     </ColumnGroup>
-    <Column title="Harga Diskon" dataIndex="age" key="age" />
-    <Column title="Total" dataIndex="address" key="address" />
+    <Column
+      title="Harga Diskon"
+      dataIndex="priceAfterDiscount"
+      key="priceAfterDiscount"
+      render={(value) => {
+        return CurrencyFormatter.format(value);
+      }}
+    />
+    <Column
+      title="Total"
+      dataIndex="grandTotal"
+      key="grandTotal"
+      render={(value) => {
+        return CurrencyFormatter.format(value);
+      }}
+    />
     <Column
       title="Action"
       key="action"

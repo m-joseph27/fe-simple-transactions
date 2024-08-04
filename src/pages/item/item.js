@@ -148,7 +148,7 @@ const ItemsPage = () => {
       </div>
       <ItemModal
         visible={isModalVisible}
-        onClose={() => setIsModalVisible(false)}
+        onClose={() => {setIsModalVisible(false); itemForm.resetFields()}}
         onSubmit={handleAddOrEditCustomer}
         form={itemForm}
         editingItem={editingItem}

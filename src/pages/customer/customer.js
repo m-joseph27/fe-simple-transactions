@@ -146,7 +146,7 @@ const CustomerPage = () => {
       </div>
       <CustomerModal
         visible={isModalVisible}
-        onClose={() => setIsModalVisible(false)}
+        onClose={() => {setIsModalVisible(false); customerForm.resetFields()}}
         onSubmit={handleAddOrEditCustomer}
         form={customerForm}
         editingCustomer={editingCustomer}

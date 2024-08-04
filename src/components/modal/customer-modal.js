@@ -5,7 +5,7 @@ const CustomerModal = ({ visible, onClose, onSubmit, form, editingCustomer }) =>
   return (
     <Modal
       title={editingCustomer ? "Edit Pelanggan" : "Tambah Pelanggan"}
-      visible={visible}
+      open={visible}
       onCancel={onClose}
       footer={[
         <Button key="cancel" onClick={onClose}>

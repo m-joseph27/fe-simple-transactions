@@ -15,7 +15,7 @@ const TransactionModal = ({ visible, onCreate, onCancel, editingItem, items, for
   return (
     <Modal
       title={editingItem ? "Edit Barang" : "Tambah Barang"}
-      visible={visible}
+      open={visible}
       onOk={onCreate}
       onCancel={onCancel}
     >

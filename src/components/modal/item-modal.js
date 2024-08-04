@@ -5,7 +5,7 @@ const ItemModal = ({ visible, onClose, onSubmit, form, editingItem }) => {
   return (
     <Modal
       title={editingItem ? "Edit Barang" : "Tambah Barang"}
-      visible={visible}
+      open={visible}
       onCancel={onClose}
       footer={[
         <Button key="cancel" onClick={onClose}>

@@ -38,7 +38,7 @@ const SalesPage = () => {
     {
       title: 'Nama Customer',
       render: (value) => {
-        return value.customerId.customerName;
+        return value.customerId && value.customerId.customerName ? value.customerId.customerName : 'N/A';
       }
     },
     {

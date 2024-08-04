@@ -14,7 +14,7 @@ const TransactionTableComponent = ({ data }) => (
       dataIndex="itemId"
       key="itemId"
       render={(value) => {
-        return <span>{value.itemCode}</span>
+        return <span>{value ? value.itemCode : 'N/A'}</span>
       }}
     />
     <Column
@@ -22,7 +22,7 @@ const TransactionTableComponent = ({ data }) => (
       dataIndex="itemId"
       key="itemId"
       render={(value) => {
-        return <span>{value.itemName}</span>
+        return <span>{value ? value.itemName : 'N/A'}</span>
       }}
     />
     <Column

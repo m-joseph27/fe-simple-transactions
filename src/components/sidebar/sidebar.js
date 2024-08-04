@@ -1,16 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { AppstoreOutlined, UserOutlined, ShoppingOutlined, PlusOutlined, MenuOutlined } from '@ant-design/icons';
 import { Menu, Button } from 'antd';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import classNames from 'classnames';
 
 const BaseSidebarComponent = () => {
   const [collapsed, setCollapsed] = useState(true);
   const navigate = useNavigate();
+  const location = useLocation();
+  const [selectedKey, setSelectedKey] = useState(location.pathname);
+
+  useEffect(() => {
+    setSelectedKey(location.pathname);
+  }, [location.pathname]);
 
   const onClick = (e) => {
     navigate(e.key);
-    setCollapsed(true); // Collapse sidebar after navigation on mobile
+    setCollapsed(true);
   };
 
   const toggleSidebar = () => {
@@ -66,7 +72,7 @@ const BaseSidebarComponent = () => {
           style={{
             width: 256,
           }}
-          defaultSelectedKeys={['/']}
+          selectedKeys={[selectedKey]}
           defaultOpenKeys={['grp']}
           mode="inline"
           items={items}

@@ -1,12 +1,13 @@
 import React from 'react';
 import { Modal, Form, Input, Button } from 'antd';
 
-const ItemModal = ({ visible, onClose, onSubmit, form, editingItem }) => {
+const ItemModal = ({ visible, onClose, onSubmit, form, editingItem, loading }) => {
   return (
     <Modal
       title={editingItem ? "Edit Barang" : "Tambah Barang"}
       open={visible}
       onCancel={onClose}
+      loading={loading}
       footer={[
         <Button key="cancel" onClick={onClose}>
           Batal

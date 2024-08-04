@@ -6,17 +6,21 @@ import CurrencyFormatter from '../../utils/currency-formatter';
 
 const SalesPage = () => {
   const [sales, setSales] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     getSalesFromServer();
   }, []);
 
   const getSalesFromServer = () => {
+    setLoading(true);
     const fetchData = async () => {
       try {
         const data = await getSales();
         setSales(data);
+        setLoading(false);
       } catch (error) {
+        setLoading(false);
       }
     }
 
@@ -82,7 +86,7 @@ const SalesPage = () => {
 
   return (
     <div>
-      <BaseTableComponent columns={columns} data={sales} />
+      <BaseTableComponent columns={columns} data={sales} loading={loading} />
     </div>
   )
 }

@@ -10,17 +10,22 @@ const CustomerPage = () => {
   const [customers, setCustomers] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [editingCustomer, setEditingCustomer] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [customerLoading, setCustomerLoading] = useState(false);
 
   useEffect(() => {
     getCustomersFromAPI();
   }, []);
 
   const getCustomersFromAPI = async () => {
+    setCustomerLoading(true);
     try {
       const data = await getCustomers('');
       setCustomers(data);
+      setCustomerLoading(false);
     } catch (error) {
       alert('gagal memuat pelanggan');
+      setCustomerLoading(false);
     }
   }
 
@@ -43,29 +48,33 @@ const CustomerPage = () => {
   };
 
   const addCustomerAPI = async () => {
+    setLoading(true);
+    const payload = customerForm.getFieldValue();
     try {
-      const payload = customerForm.validateFields();
       await postCustomer(payload);
-      alert('Berhasil menambahkan customer');
       getCustomersFromAPI();
       setIsModalVisible(false);
+      setLoading(false);
       customerForm.resetFields();
     } catch (error) {
       alert('Gagal menambahkan customer');
+      setLoading(false);
     }
   };
 
   const editCustomerAPI = async () => {
+    setLoading(true);
+    const payload = await customerForm.getFieldValue();
     try {
-      const payload = await customerForm.validateFields();
       await updateCustomer(editingCustomer._id, payload);
-      alert('Berhasil mengupdate customer');
       getCustomersFromAPI();
       setIsModalVisible(false);
       customerForm.resetFields();
       setEditingCustomer(null);
+      setLoading(false);
     } catch (error) {
       alert('Gagal mengupdate customer');
+      setLoading(false);
     }
   };
 
@@ -142,7 +151,7 @@ const CustomerPage = () => {
         </Button>
       </div>
       <div>
-        <CustomersTableComponent columns={columns} data={customers} />
+        <CustomersTableComponent columns={columns} data={customers} loading={customerLoading} />
       </div>
       <CustomerModal
         visible={isModalVisible}
@@ -150,6 +159,7 @@ const CustomerPage = () => {
         onSubmit={handleAddOrEditCustomer}
         form={customerForm}
         editingCustomer={editingCustomer}
+        loading={loading}
       />
     </div>
   )

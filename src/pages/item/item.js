@@ -11,26 +11,34 @@ const ItemsPage = () => {
   const [items, setItems] = useState([]);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [editingItem, setEditingItem] = useState(null);
+  const [modalLoading, setModalLoading] = useState(false);
+  const [itemLoading, setItemLoading] = useState(false);
 
   useEffect(() => {
     getItemsFromAPI();
   }, []);
 
   const getItemsFromAPI = async () => {
+    setItemLoading(true);
     try {
       const data = await getItems('');
       setItems(data);
+      setItemLoading(false);
     } catch (error) {
-      alert('gagal memuat item')
+      alert('gagal memuat item');
+      setItemLoading(false);
     }
   }
 
   const deleteItemAPI = async (item) => {
+    setItemLoading(true);
     try {
       await deleteItem(`/${item._id}`);
       getItemsFromAPI();
+      setItemLoading(false);
     } catch (error) {
       alert('Gagal menghapus item');
+      setItemLoading(false);
     }
   }
 
@@ -43,18 +51,22 @@ const ItemsPage = () => {
   };
 
   const addItemAPI = async () => {
+    setModalLoading(true);
     const payload = itemForm.getFieldValue();
     try {
       await postItem(payload);
       getItemsFromAPI();
       setIsModalVisible(false);
       itemForm.resetFields();
+      setModalLoading(false);
     } catch (error) {
-      alert('gagal menambah barang')
+      alert('gagal menambah barang');
+      modalLoading(false);
     }
   }
 
   const editItemAPI = async () => {
+    setModalLoading(true);
     const payload = itemForm.getFieldValue();
     try {
       await updateItem(editingItem._id, payload);
@@ -62,8 +74,10 @@ const ItemsPage = () => {
       setIsModalVisible(false);
       setEditingItem(null);
       itemForm.resetFields();
+      setModalLoading(false);
     } catch (error) {
-      alert('gagal mengupdate item')
+      alert('gagal mengupdate item');
+      setModalLoading(false);
     }
   }
 
@@ -144,7 +158,7 @@ const ItemsPage = () => {
         </Button>
       </div>
       <div>
-        <ItemsTableComponent columns={columns} data={items} />
+        <ItemsTableComponent columns={columns} data={items} loading={itemLoading} />
       </div>
       <ItemModal
         visible={isModalVisible}
@@ -152,6 +166,7 @@ const ItemsPage = () => {
         onSubmit={handleAddOrEditCustomer}
         form={itemForm}
         editingItem={editingItem}
+        loading={modalLoading}
       />
     </div>
   )

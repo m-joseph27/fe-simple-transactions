@@ -8,7 +8,7 @@ const CustomersTableComponent = ({ data, columns, loading }) => (
     bordered
     pagination={false}
     loading={loading}
-    scroll={{ x: 'max-content', y: 'h-screen' }}
+    scroll={{ x: 'max-content', y: '500' }}
   />
 );
 

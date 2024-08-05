@@ -4,7 +4,7 @@ import CurrencyFormatter from '../../utils/currency-formatter';
 const { Column, ColumnGroup } = Table;
 
 const TransactionTableComponent = ({ data }) => (
-  <Table bordered dataSource={data} pagination={false} scroll={{ x: 800 }}>
+  <Table bordered dataSource={data} pagination={false} scroll={{ x: 800, y: 250 }}>
     <Column
       title="No"
       render={(text, record, index) => index + 1}

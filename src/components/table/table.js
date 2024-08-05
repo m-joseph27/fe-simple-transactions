@@ -14,7 +14,7 @@ const BaseTableComponent = ({ data, columns, loading }) => (
       </div>
     }
     pagination={false}
-    scroll={{ x: 'max-content', y: 'h-screen' }}
+    scroll={{ x: 'max-content', y: 500 }}
   />
 );
 

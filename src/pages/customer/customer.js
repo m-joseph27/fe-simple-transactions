@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { PlusOutlined, DeleteFilled, EditFilled } from '@ant-design/icons';
 import CustomersTableComponent from "../../components/table/customer-table";
 import { deleteCustomer, getCustomers, postCustomer, updateCustomer } from "../../services/customer";
-import { PlusOutlined } from '@ant-design/icons';
 import { Button, Form } from "antd";
 import CustomerModal from "../../components/modal/customer-modal";
 
@@ -119,6 +119,7 @@ const CustomerPage = () => {
             type="default"
             size="middle"
             onClick={() => openEditModal(value)}
+            icon={<EditFilled />}
           >
             Ubah
           </Button>
@@ -127,6 +128,7 @@ const CustomerPage = () => {
             type="default"
             size="middle"
             onClick={() => deleteCustomerAPI(value)}
+            icon={<DeleteFilled />}
           >
             Delete
           </Button>

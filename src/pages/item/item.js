@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { deleteItem, getItems, postItem, updateItem } from "../../services/items";
-import { PlusOutlined } from '@ant-design/icons';
+import { PlusOutlined, DeleteFilled, EditFilled } from '@ant-design/icons';
 import { Button, Form } from "antd";
 import ItemsTableComponent from "../../components/table/item-table";
 import CurrencyFormatter from "../../utils/currency-formatter";
@@ -125,6 +125,7 @@ const ItemsPage = () => {
             type="default"
             size="middle"
             onClick={() => openEditModal(value)}
+            icon={<EditFilled />}
           >
             Ubah
           </Button>
@@ -133,6 +134,7 @@ const ItemsPage = () => {
             type="default"
             size="middle"
             onClick={() => deleteItemAPI(value)}
+            icon={<DeleteFilled />}
           >
             Delete
           </Button>

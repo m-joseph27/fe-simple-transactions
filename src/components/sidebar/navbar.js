@@ -1,6 +1,7 @@
 import React from 'react';
-import { Layout, Typography } from 'antd';
+import { Layout, Typography, Button } from 'antd';
 import { useLocation } from 'react-router-dom';
+import { UserOutlined } from '@ant-design/icons';
 
 const { Header } = Layout;
 const { Title } = Typography;
@@ -24,13 +25,18 @@ const Navbar = () => {
   };
 
   return (
-    <Header className="bg-white flex justify items-center px-4 rounded-lg">
-      <Title level={4} className="mb-0 mt-2">
-        Halaman 
-      </Title>
-      <span className="">
-        / {getCurrentMenu()}
-      </span>
+    <Header className="bg-white flex justify-between items-center px-4 rounded-lg">
+      <div className="flex justify-center items-center">
+        <Title level={5} className="mb-0 mt-2 mr-1 navbar-title">
+          Halaman 
+        </Title>
+        <span className="navbar-subtitle text-xs mt-1">
+          / {getCurrentMenu()}
+        </span>
+      </div>
+      <div>
+        <Button shape="circle" icon={<UserOutlined />} />
+      </div>
     </Header>
   );
 };

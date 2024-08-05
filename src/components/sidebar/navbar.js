@@ -12,13 +12,13 @@ const Navbar = () => {
   const getCurrentMenu = () => {
     switch (location.pathname) {
       case '/':
-        return 'Sales';
+        return 'Penjualan';
       case '/add-transaction':
-        return 'Add Transaction';
+        return 'Tambah Transaksi';
       case '/customers':
-        return 'Customers';
+        return 'Pelanggan';
       case '/items':
-        return 'Items';
+        return 'Barang';
       default:
         return 'Menu';
     }

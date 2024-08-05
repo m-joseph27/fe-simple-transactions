@@ -1,12 +1,11 @@
 import React from 'react';
-import { Button, Layout, Typography } from 'antd';
-import { MenuOutlined } from '@ant-design/icons';
+import { Layout, Typography } from 'antd';
 import { useLocation } from 'react-router-dom';
 
 const { Header } = Layout;
 const { Title } = Typography;
 
-const Navbar = ({ toggleSidebar }) => {
+const Navbar = () => {
   const location = useLocation();
 
   const getCurrentMenu = () => {

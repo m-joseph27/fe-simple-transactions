@@ -56,8 +56,8 @@ const BaseSidebarComponent = () => {
   return (
     <div>
       <Button
-        type="primary"
-        className="lg:hidden mb-2"
+        type="default"
+        className="lg:hidden mb-2 p-6 mt-5"
         onClick={toggleSidebar}
         icon={<MenuOutlined />}
       />

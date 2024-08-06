@@ -64,7 +64,7 @@ const ItemsPage = () => {
       setModalLoading(false);
     } catch (error) {
       NotificationComponent('error', 'Error!', 'Gagal menambahkan barang');
-      modalLoading(false);
+      setModalLoading(false);
     }
   }
 

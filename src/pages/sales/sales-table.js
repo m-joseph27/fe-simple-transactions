@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Form, Table } from 'antd';
+import { Button, Table } from 'antd';
 import { PlusOutlined, DeleteFilled, EditFilled } from '@ant-design/icons';
 import CurrencyFormatter from '../../utils/currency-formatter';
 import { deleteTransactions, postTransactions, updateTransactions } from '../../services/transactions';
@@ -9,8 +9,7 @@ import NotificationComponent from '../../components/notification/notification';
 
 const { Column, ColumnGroup } = Table;
 
-const TransactionTableComponent = () => {
-  const [form] = Form.useForm();
+const TransactionTableComponent = ({ form }) => {
   const [items, setItems] = useState([]);
   const [modalLoading, setModalLoading] = useState(false);
 

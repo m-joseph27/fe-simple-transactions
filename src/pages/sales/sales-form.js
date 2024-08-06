@@ -22,16 +22,28 @@ const SalesFormComponent = () => {
   const navigate = useNavigate();
   const salesNumber = generateString();
   const [form] = Form.useForm();
+  const [transactionForm] = Form.useForm();
   const [customers, setCustomers] = useState([]);
   const [selectedCustomer, setSelectedCustomer] = useState(null);
   const transactions = localStorage.getItem('transactions');
   const items = JSON.parse(transactions);
   const [loading, setLoading] = useState(false);
+  const [subtotal, setSubtotal] = useState(0);
 
   useEffect(() => {
     form.setFieldsValue({ salesNumber: salesNumber });
     getCustomersFromAPI();
-  }, [form, transactions]);
+  }, [form]);
+
+  useEffect(() => {
+    if (items && items.length > 0) {
+      const total = items.reduce((sum, item) => sum + (item.price || 0), 0);
+      setSubtotal(total);
+      form.setFieldsValue({ subtotal: total });
+    }
+  }, transactionForm);
+
+
 
   const getCustomersFromAPI = async () => {
     try {
@@ -127,7 +139,7 @@ const SalesFormComponent = () => {
                 </Form.Item>
                 <hr className="mt-6" />
                 <div className="mt-6 mb-10">
-                  <TransactionTableComponent />
+                  <TransactionTableComponent form={transactionForm} />
                 </div>
               </div>
               <div className="flex justify-end mt-8">
@@ -137,6 +149,7 @@ const SalesFormComponent = () => {
                     <Input
                       disabled
                       type="number"
+                      value={subtotal}
                     />
                   </Form.Item>
                   <Form.Item label="Diskon" name="discount">
@@ -151,9 +164,7 @@ const SalesFormComponent = () => {
                   </Form.Item>
                   <Form.Item label="Total Bayar" name="total">
                     <Input
-                      disabled
                       type="number"
-                      readOnly
                     />
                   </Form.Item>
                 </div>

@@ -6,6 +6,7 @@ import moment from 'moment';
 import TransactionTableComponent from './sales-table';
 import { postSale } from '../../services/sales';
 import { useNavigate } from 'react-router-dom';
+import NotificationComponent from '../../components/notification/notification';
 
 const { Option } = Select;
 
@@ -37,7 +38,7 @@ const SalesFormComponent = () => {
       const data = await getCustomers('');
       setCustomers(data);
     } catch (error) {
-      alert('Gagal memuat data');
+      NotificationComponent('error', 'Error!', 'Gagal memuat data pelanggan');
     }
   };
 
@@ -71,10 +72,11 @@ const SalesFormComponent = () => {
       await postSale('', payload);
       localStorage.removeItem('transactions');
       setLoading(false);
+      NotificationComponent('success', 'Sukses!', 'Berhasil menambah data sales');
       navigate('/');
     } catch (error) {
       setLoading(false);
-      alert('gagal membuat sales');
+      NotificationComponent('error', 'Error!', 'Gagal menambah data sales');
     }
   };
 

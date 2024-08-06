@@ -5,6 +5,7 @@ import CurrencyFormatter from '../../utils/currency-formatter';
 import { deleteTransactions, postTransactions, updateTransactions } from '../../services/transactions';
 import TransactionModal from '../../components/modal/modal';
 import { getItems } from '../../services/items';
+import NotificationComponent from '../../components/notification/notification';
 
 const { Column, ColumnGroup } = Table;
 
@@ -35,7 +36,7 @@ const TransactionTableComponent = () => {
         return newItems;
       });
     } catch (error) {
-      alert('Gagal menghapus transaksi');
+      NotificationComponent('error', 'Error!', 'Gagal menghapus transaksi');
     }
   };
 
@@ -44,7 +45,7 @@ const TransactionTableComponent = () => {
       const data = await getItems('');
       setItems(data);
     } catch (error) {
-      alert('Gagal memuat barang');
+      NotificationComponent('error', 'Error!', 'Gagal memuat data barang');
     }
   };
 
@@ -88,7 +89,7 @@ const TransactionTableComponent = () => {
 
       setModalLoading(false);
     } catch (error) {
-      alert('Gagal membuat transaksi');
+      NotificationComponent('error', 'Error!', 'Gagal menambahkan transaksi');
       setModalLoading(false);
     }
   };

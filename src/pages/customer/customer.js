@@ -4,6 +4,7 @@ import CustomersTableComponent from "../../components/table/customer-table";
 import { deleteCustomer, getCustomers, postCustomer, updateCustomer } from "../../services/customer";
 import { Button, Form } from "antd";
 import CustomerModal from "../../components/modal/customer-modal";
+import NotificationComponent from "../../components/notification/notification";
 
 const CustomerPage = () => {
   const [customerForm] = Form.useForm();
@@ -24,7 +25,7 @@ const CustomerPage = () => {
       setCustomers(data);
       setCustomerLoading(false);
     } catch (error) {
-      alert('gagal memuat pelanggan');
+      NotificationComponent('error', 'Error!', 'Terjadi Kesalahan saat memuat pelanggan');
       setCustomerLoading(false);
     }
   }
@@ -32,10 +33,10 @@ const CustomerPage = () => {
   const deleteCustomerAPI = async (customer) => {
     try {
       await deleteCustomer(`/${customer._id}`);
-      alert('Berhasil menghapus customer')
+      NotificationComponent('success', 'Sukses!', 'Berhasil menghapus pelanggan');
       getCustomersFromAPI();
     } catch (error) {
-      alert('gagal menghapus customer')
+      NotificationComponent('error', 'Error!', 'Gagal menghapus pelanggan');
     }
   }
 
@@ -57,7 +58,7 @@ const CustomerPage = () => {
       setLoading(false);
       customerForm.resetFields();
     } catch (error) {
-      alert('Gagal menambahkan customer');
+      NotificationComponent('error', 'Error!', 'Gagal menambahkan pelanggan periksa kembali data yang diinput');
       setLoading(false);
     }
   };
@@ -73,7 +74,7 @@ const CustomerPage = () => {
       setEditingCustomer(null);
       setLoading(false);
     } catch (error) {
-      alert('Gagal mengupdate customer');
+      NotificationComponent('error', 'Error!', 'Gagal mengupdate pelanggan periksa kembali data yang diinput');
       setLoading(false);
     }
   };

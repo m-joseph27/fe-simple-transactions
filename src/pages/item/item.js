@@ -5,6 +5,7 @@ import { Button, Form } from "antd";
 import ItemsTableComponent from "../../components/table/item-table";
 import CurrencyFormatter from "../../utils/currency-formatter";
 import ItemModal from "../../components/modal/item-modal";
+import NotificationComponent from "../../components/notification/notification";
 
 const ItemsPage = () => {
   const [itemForm] = Form.useForm();
@@ -25,7 +26,7 @@ const ItemsPage = () => {
       setItems(data);
       setItemLoading(false);
     } catch (error) {
-      alert('gagal memuat item');
+      NotificationComponent('error', 'Error!', 'Gagal memuat data barang');
       setItemLoading(false);
     }
   }
@@ -35,9 +36,10 @@ const ItemsPage = () => {
     try {
       await deleteItem(`/${item._id}`);
       getItemsFromAPI();
+      NotificationComponent('success', 'Sukses!', 'Berhasil menghapus barang');
       setItemLoading(false);
     } catch (error) {
-      alert('Gagal menghapus item');
+      NotificationComponent('error', 'Error!', 'Gagal menghapus barang');
       setItemLoading(false);
     }
   }
@@ -58,9 +60,10 @@ const ItemsPage = () => {
       getItemsFromAPI();
       setIsModalVisible(false);
       itemForm.resetFields();
+      NotificationComponent('success', 'Sukses!', 'Berhasil menambahkan barang');
       setModalLoading(false);
     } catch (error) {
-      alert('gagal menambah barang');
+      NotificationComponent('error', 'Error!', 'Gagal menambahkan barang');
       modalLoading(false);
     }
   }
@@ -74,9 +77,10 @@ const ItemsPage = () => {
       setIsModalVisible(false);
       setEditingItem(null);
       itemForm.resetFields();
+      NotificationComponent('success', 'Sukses!', 'Berhasil mengupdate barang');
       setModalLoading(false);
     } catch (error) {
-      alert('gagal mengupdate item');
+      NotificationComponent('error', 'Error!', 'Gagal mengupdate barang');
       setModalLoading(false);
     }
   }

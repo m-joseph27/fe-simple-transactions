@@ -1,45 +1,23 @@
-import axios from "axios";
+import axios from 'axios';
 
-const baseURL = axios.create({
-  baseURL: 'http://localhost:3000/transactions',
-});
+const API_BASE_URL = 'http://localhost:3000';
 
-export const getTransactions = async (endpoint) => {
-  try {
-    const response = await baseURL.get(endpoint);
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    throw error;
-  }
-}
+export const getTransactions = async (query) => {
+  const response = await axios.get(`${API_BASE_URL}/transactions${query}`);
+  return response.data;
+};
 
-export const postTransaction = async (endpoint, transaction) => {
-  try {
-    const response = await baseURL.post(endpoint, transaction);
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    throw error;
-  }
-}
+export const deleteTransactions = async (id) => {
+  const response = await axios.delete(`${API_BASE_URL}/transactions${id}`);
+  return response.data;
+};
 
-export const updateTransaction = async (endpoint, id, transaction) => {
-  try {
-    const response = await baseURL.put(endpoint, id, transaction);
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    throw error;
-  }
-}
+export const updateTransactions = async (id, customer) => {
+  const response = await axios.put(`${API_BASE_URL}/transactions/${id}`, customer);
+  return response.data;
+};
 
-export const deleteTransaction = async (endpoint, id) => {
-  try {
-    const response = await baseURL.delete(endpoint, id);
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    throw error;
-  }
-}
+export const postTransactions = async (customer) => {
+  const response = await axios.post(`${API_BASE_URL}/transactions`, customer);
+  return response.data;
+};

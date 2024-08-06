@@ -3,7 +3,7 @@ import { Modal, Form, Input, InputNumber, Select } from 'antd';
 
 const { Option } = Select;
 
-const TransactionModal = ({ visible, onCreate, onCancel, editingItem, items, form }) => {
+const TransactionModal = ({ visible, onCreate, onCancel, editingItem, items, form, loading }) => {
   const handleItemCodeChange = (value) => {
     const item = items.find((item) => item.itemCode === value);
     form.setFieldsValue({
@@ -18,6 +18,7 @@ const TransactionModal = ({ visible, onCreate, onCancel, editingItem, items, for
       open={visible}
       onOk={onCreate}
       onCancel={onCancel}
+      loading={loading}
     >
       <Form form={form} layout="vertical">
         <Form.Item name="itemId" hidden>

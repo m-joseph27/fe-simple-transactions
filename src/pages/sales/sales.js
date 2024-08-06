@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { PlusOutlined } from '@ant-design/icons';
+import { PlusOutlined, SearchOutlined } from '@ant-design/icons';
 import BaseTableComponent from "../../components/table/table";
 import { getSales } from "../../services/sales";
 import moment from "moment";
 import CurrencyFormatter from '../../utils/currency-formatter';
-import { Button } from "antd";
+import { Button, Input } from "antd";
 import { useNavigate } from "react-router-dom";
 
 const SalesPage = () => {
   const navigate = useNavigate();
   const [sales, setSales] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     getSalesFromServer();
@@ -33,6 +34,10 @@ const SalesPage = () => {
 
   const handleClick = () => {
     navigate('/add-transaction');
+  };
+
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value);
   };
 
   const columns = [
@@ -92,9 +97,20 @@ const SalesPage = () => {
     },
   ];
 
+  const filteredSales = sales.filter(sale => 
+    sale.salesNumber.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    (sale.customerId && sale.customerId.customerName.toLowerCase().includes(searchQuery.toLowerCase()))
+  );
+
   return (
     <div className="container mx-auto">
-      <div className="flex mb-4 mt-8">
+      <div className="flex mb-4 mt-8 gap-4">
+        <Input
+          placeholder="Search"
+          prefix={<SearchOutlined />}
+          value={searchQuery}
+          onChange={handleSearch}
+        />
         <Button
           type="primary"
           size="middle"
@@ -106,7 +122,7 @@ const SalesPage = () => {
           Tambah Transaksi
         </Button>
       </div>
-      <BaseTableComponent columns={columns} data={sales} loading={loading} />
+      <BaseTableComponent columns={columns} data={filteredSales} loading={loading} />
     </div>
   )
 }
